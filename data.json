@@ -1,0 +1,179 @@
+{
+  "teleperformance": {
+    "name": "Muhammad Rizky Saputra",
+    "title": "Pelamar: Customer Expert Moderator — Teleperformance",
+    "themeColor": "blue",
+    "location": "Surakarta, Jawa Tengah",
+    "email": "muhammadsaputra75@gmail.com",
+    "linkedin": "linkedin.com/in/muhammad-rizky-saputra-a6a405373",
+    "linkedinUrl": "https://www.linkedin.com/in/muhammad-rizky-saputra-a6a405373",
+    "portfolio": "link-portofolio.com",
+    "portfolioUrl": "https://kavimrs.github.io/my-portfolio",
+    "photo": "asset/46 biru.jpg",
+    "summary": "Lulusan S1 Pendidikan Teknologi Informasi dan PPG yang memiliki latar belakang di bidang IT, komunikasi, dan pengelolaan media digital. Memiliki ketelitian dalam meninjau konten, terbiasa berinteraksi dengan publik, serta mampu mempelajari penggunaan sistem operasional baru dengan cepat. Siap berkontribusi dalam menjaga kualitas layanan, kepatuhan aturan platform, dan kepuasan pengguna.",
+    "skills": [
+      { "category": "Teknis IT & Sistem", "detail": "Dasar Pemrograman (PPLG), Internet of Things (IoT), Troubleshooting Perangkat Keras/Lunak, Jaringan Dasar (MikroTik), Pemisahan & Pengelolaan Data (MS Office/Spreadsheet)." },
+      { "category": "Media & Desain Digital", "detail": "Pengelolaan Media Sosial, Video & Image Editing (Adobe Premiere, After Effects, CorelDraw), Pembuatan Content Visual, Publikasi Informasi Digital." },
+      { "category": "Kemampuan Bahasa & Komunikasi", "detail": "Bahasa Indonesia: Penutur Asli (Native) | Bahasa Inggris: Intermediate (Lisan & Tulisan)" }
+    ],
+    "experience": [
+      {
+        "company": "SMK Negeri 13 Bandung", "period": "2024 – 2025", "role": "Guru Praktikan / PPL PPG (Program Keahlian PPLG & TKJ) — Bandung",
+        "tasks": [
+          "Mengampu mata pelajaran DPK & IoT (PPLG/RPL) serta Informatika Algoritma Pemrograman (TKJ).",
+          "Mengevaluasi, meninjau, dan memoderasi tugas serta karya digital siswa sesuai standar etika dan kurikulum.",
+          "Menganalisis serta menangani penyelesaian kendala teknis (troubleshooting) laboratorium secara responsif."
+        ]
+      },
+      {
+        "company": "SMK Negeri 4 Tanjungpinang", "period": "2023 – 2024", "role": "Guru Honorer (Program Keahlian TJKT) — Tanjungpinang",
+        "tasks": [
+          "Mengampu mata pelajaran ASJ, PKPJ, dan PKK.",
+          "Menjalankan pengawasan operasional laboratorium dan memastikan kepatuhan penuh terhadap SOP."
+        ]
+      },
+      {
+        "company": "Kemendikbudristek RI (Kampus Mengajar Angkatan 2)", "period": "Agt – Des 2021", "role": "Pengajar & Fasilitator Adaptasi Teknologi — Surakarta",
+        "tasks": [ "Menganalisis kebutuhan adaptasi teknologi sekolah dan menyusun media digital interaktif yang aman dan edukatif." ]
+      }
+    ],
+    "organization": [
+      {
+        "name": "Organisasi Taekwondo Unisri", "period": "2020 – 2022", "role": "Ketua Media Center (2021–2022) & Staff Humas (2020–2021)",
+        "tasks": [
+          "Pengelolaan Media: Meninjau, menyunting, dan memublikasikan konten visual/video untuk media sosial organisasi.",
+          "Interaksi Publik: Mengelola akun media sosial serta merespons pertanyaan dan komentar publik secara informatif dan sopan."
+        ]
+      },
+      {
+        "name": "HIMATEK Unisri (Himpunan Mahasiswa PTI)", "period": "2020 – 2022", "role": "Ketua Penelitian & Pengembangan (2021–2022)",
+        "tasks": [ "Memimpin evaluasi kualitas program kerja dan menganalisis masukan (feedback) mahasiswa." ]
+      }
+    ],
+    "education": [
+      { "school": "Universitas Pendidikan Indonesia (UPI)", "detail": "PPG Pengembangan Perangkat Lunak & Gim | 2024–2025" },
+      { "school": "Universitas Slamet Riyadi (UNISRI)", "detail": "S1 Pendidikan Teknologi Informasi (S.Pd.) | 2019–2023" }
+    ],
+    "certifications": [
+      "Sertifikat Pendidik (Serdik) PPLG — UPI & Kemendikbudristek (2025)",
+      "Kampus Mengajar Angkatan 2 — Kemendikbudristek RI (2021)"
+    ]
+  },
+  "guru": {
+    "name": "Muhammad Rizky Saputra, S.Pd., Gr.",
+    "title": "Guru Kejuruan SMK (PPLG / TJKT / Informatika)",
+    "themeColor": "emerald",
+    "location": "Surakarta, Jawa Tengah",
+    "email": "muhammadsaputra75@gmail.com",
+    "linkedin": "linkedin.com/in/muhammad-rizky-saputra-a6a405373",
+    "linkedinUrl": "https://www.linkedin.com/in/muhammad-rizky-saputra-a6a405373",
+    "portfolio": "link-portofolio.com",
+    "portfolioUrl": "https://kavimrs.github.io/my-portfolio",
+    "photo": "asset/46 biru.jpg",
+    "summary": "Guru Kejuruan IT bersertifikat pendidik profesional (Gr.) lulusan S1 Pendidikan Teknologi Informasi dan PPG Bagi Guru Tertentu bidang studi PPLG (UPI Bandung). Memiliki pengalaman mengajar aktif di SMK Negeri mengampu program keahlian PPLG/RPL dan TJKT/TKJ serta mata pelajaran Informatika. Ahli dalam implementasi Kurikulum Merdeka, penyusunan Modul Ajar, perancangan pembelajaran berbasis proyek (Project-Based Learning), serta pengelolaan laboratorium komputer secara kondusif.",
+    "skills": [
+      { "category": "Pedagogik & Kurikulum", "detail": "Kurikulum Merdeka, Modul Ajar/RPP, Asesmen Formatif/Sumatif, Project-Based Learning (PjBL), Pembelajaran Berdiferensiasi, Manajemen Kelas." },
+      { "category": "Keahlian Produktif PPLG", "detail": "Dasar-Dasar PPLG (DPK), Logika & Algoritma Pemrograman, Pemrograman Web/Desktop, Internet of Things (IoT), Pemodelan Perangkat Lunak, UI/UX." },
+      { "category": "Keahlian Produktif TJKT", "detail": "Administrasi Sistem Jaringan (ASJ), PKPJ, Hardware/Software Troubleshooting, MikroTik Networking, Produk Kreatif & Kewirausahaan (PKK)." },
+      { "category": "Media & EdTech Tools", "detail": "Google Classroom, LMS, Canva for Education, Adobe Creative Cloud, CorelDraw, MS Office, Pembelajaran Interaktif Digital." }
+    ],
+    "experience": [
+      {
+        "company": "SMK Negeri 13 Bandung", "period": "2024 – 2025", "role": "Guru Praktikan / PPL PPG (Program Keahlian PPLG & TKJ) — Bandung",
+        "tasks": [
+          "Mengampu DPK & IoT untuk kelas X PPLG/RPL serta Informatika Algoritma Pemrograman untuk kelas X TKJ.",
+          "Menyusun Modul Ajar, instrumen asesmen, dan media interaktif berbasis Kurikulum Merdeka.",
+          "Mengevaluasi karya digital dan bimbingan troubleshooting perangkat keras/lunak laboratorium."
+        ]
+      },
+      {
+        "company": "SMK Negeri 4 Tanjungpinang", "period": "2023 – 2024", "role": "Guru Honorer (Program Keahlian TJKT) — Tanjungpinang",
+        "tasks": [
+          "Mengampu ASJ, PKPJ (kelas XI) dan PKK (kelas XII), membimbing proyek teknologi siswa.",
+          "Mengelola tata tertib laboratorium jaringan serta pengawasan operasional praktikum."
+        ]
+      },
+      {
+        "company": "Kemendikbudristek RI (Kampus Mengajar Angkatan 2)", "period": "Agt – Des 2021", "role": "Pengajar & Fasilitator Adaptasi Teknologi — Surakarta",
+        "tasks": [ "Mengimplementasikan program literasi-numerasi digital dan pendampingan adaptasi teknologi guru." ]
+      }
+    ],
+    "organization": [
+      {
+        "name": "Organisasi Taekwondo Unisri", "period": "2020 – 2022", "role": "Ketua Media Center (2021–2022) & Staff Humas (2020–2021)",
+        "tasks": [
+          "Pengelolaan Media: Meninjau, menyunting, dan memublikasikan konten visual/video untuk media sosial organisasi.",
+          "Interaksi Publik: Mengelola akun media sosial serta merespons pertanyaan publik secara sopan."
+        ]
+      }
+    ],
+    "education": [
+      { "school": "Universitas Pendidikan Indonesia (UPI)", "detail": "PPG Bagi Guru Tertentu (PPLG) | 2024–2025" },
+      { "school": "Universitas Slamet Riyadi (UNISRI)", "detail": "S1 Pendidikan Teknologi Informasi (S.Pd.) | 2019–2023" }
+    ],
+    "certifications": [
+      "Sertifikat Pendidik (Serdik) / Guru Profesional (Gr.) — Kemendikbudristek & UPI (2025)",
+      "Sertifikat Kampus Mengajar Angkatan 2 — Kemendikbudristek RI (2021)"
+    ]
+  },
+  "umum": {
+    "name": "Muhammad Rizky Saputra, S.Pd.",
+    "title": "",
+    "themeColor": "indigo",
+    "location": "Surakarta, Jawa Tengah",
+    "email": "muhammadsaputra75@gmail.com",
+    "linkedin": "linkedin.com/in/muhammad-rizky-saputra-a6a405373",
+    "linkedinUrl": "https://www.linkedin.com/in/muhammad-rizky-saputra-a6a405373",
+    "portfolio": "link-portofolio.com",
+    "portfolioUrl": "https://kavimrs.github.io/my-portfolio",
+    "photo": "asset/46 biru.jpg",
+    "summary": "Lulusan S1 Pendidikan Teknologi Informasi dengan fondasi teknis yang kuat di bidang IT Support, troubleshooting perangkat keras/lunak, pengelolaan jaringan, serta sistem digital. Adaptif dalam mempelajari infrastruktur baru, berorientasi pada penyelesaian masalah teknis (problem solving), dan siap berkontribusi pada berbagai posisi di industri Teknologi Informasi.",
+    "skills": [
+      { "category": "Teknis IT & Jaringan", "detail": "Hardware & Software Troubleshooting, Instalasi OS & Aplikasi, Dasar Jaringan Komputer (MikroTik/LAN), Internet of Things (IoT), Dasar Pemrograman." },
+      { "category": "Pengelolaan Data & Sistem", "detail": "Pengolahan Data (MS Excel / Google Sheets), Pengelolaan Sistem Informasi, Administrasi Server/LMS, Adaptasi Perangkat Lunak Baru." },
+      { "category": "Media & Desain Digital", "detail": "Desain Grafis (CorelDraw, Canva), Video Editing (Adobe Premiere), Pengelolaan Content & Media Digital." },
+      { "category": "Komunikasi & Layanan Teknis", "detail": "Bahasa Indonesia (Native) | Bahasa Inggris (Intermediate) | Technical Support & Public Communication" }
+    ],
+    "experience": [
+      {
+        "company": "SMK Negeri 13 Bandung", "period": "2024 – 2025", "role": "Guru Praktikan / PPL PPG (Bidang IT & PPLG) — Bandung",
+        "tasks": [
+          "Menangani pemeliharaan dan penyelesaian kendala teknis (troubleshooting) perangkat di laboratorium komputer.",
+          "Membimbing pemahaman algoritma pemrograman, IoT, dan penggunaan perangkat lunak kejuruan.",
+          "Mengelola rekapitulasi data dan administrasi sistem berbasis digital."
+        ]
+      },
+      {
+        "company": "SMK Negeri 4 Tanjungpinang", "period": "2023 – 2024", "role": "Guru Kejuruan TJKT — Tanjungpinang",
+        "tasks": [
+          "Mengampu mata pelajaran kejuruan TJKT (ASJ, PKPJ, PKK) serta membimbing praktikum jaringan & sistem komputer siswa.",
+          "Menangani troubleshooting perangkat keras, pemeliharaan infrastruktur jaringan praktikum, dan pengawasan teknis."
+        ]
+      },
+      {
+        "company": "Kemendikbudristek RI (Kampus Mengajar Angkatan 2)", "period": "Agt – Des 2021", "role": "Fasilitator Adaptasi Teknologi — Surakarta",
+        "tasks": [ "Membantu digitalisasi sistem operasional sekolah dan pendampingan adaptasi perangkat IT." ]
+      }
+    ],
+    "organization": [
+      {
+        "name": "Organisasi Taekwondo Unisri", "period": "2020 – 2022", "role": "Ketua Media Center & Staff Humas",
+        "tasks": [
+          "Mengkoordinasikan tim publikasi, pengelolaan media digital, dan komunikasi publik secara profesional."
+        ]
+      },
+      {
+        "name": "HIMATEK Unisri (Himpunan Mahasiswa PTI)", "period": "2020 – 2022", "role": "Ketua Penelitian & Pengembangan",
+        "tasks": [ "Memimpin evaluasi program kerja dan mengolah data riset masukan anggota." ]
+      }
+    ],
+    "education": [
+      { "school": "Universitas Pendidikan Indonesia (UPI)", "detail": "PPG (Pendidikan Profesi Guru) Bidang IT | 2024–2025" },
+      { "school": "Universitas Slamet Riyadi (UNISRI)", "detail": "S1 Pendidikan Teknologi Informasi (S.Pd.) | 2019–2023" }
+    ],
+    "certifications": [
+      "Sertifikat Pendidik (Serdik) Bidang IT — Kemendikbudristek RI (2025)",
+      "Sertifikat Program Kampus Mengajar — Kemendikbudristek RI (2021)"
+    ]
+  }
+}

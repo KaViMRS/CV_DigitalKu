@@ -18,268 +18,49 @@
 
     <!-- NAVIGASI / PROFILE SWITCHER -->
     <header class="no-print sticky top-0 z-50 bg-slate-900 text-white shadow-md">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-3">
             <div class="font-bold text-lg tracking-wide text-blue-400">
                 <i class="fa-solid fa-id-card mr-2"></i>CV DIGITALKU
             </div>
             
-            <!-- Tombol Switch Tab -->
-            <div class="flex bg-slate-800 p-1 rounded-lg border border-slate-700">
+            <!-- Tombol Switch Tab (3 Profil) -->
+            <div class="flex flex-wrap justify-center bg-slate-800 p-1 rounded-lg border border-slate-700 gap-1">
                 <button id="btn-teleperformance" onclick="switchTab('teleperformance')" class="tab-btn active-tele">
                     <i class="fa-solid fa-headset mr-1"></i> Teleperformance
                 </button>
                 <button id="btn-guru" onclick="switchTab('guru')" class="tab-btn inactive">
                     <i class="fa-solid fa-chalkboard-user mr-1"></i> Guru SMK
                 </button>
+                <button id="btn-umum" onclick="switchTab('umum')" class="tab-btn inactive">
+                    <i class="fa-solid fa-briefcase mr-1"></i> Umum / General
+                </button>
             </div>
 
-            <!-- Tombol Cetak PDF -->
-            <button onclick="window.print()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-2 rounded font-medium flex items-center transition">
-                <i class="fa-solid fa-print mr-1.5"></i> Cetak PDF
-            </button>
+            <!-- Tombol Aksi (Edit, Download JSON, Print) -->
+            <div class="flex items-center gap-2">
+                <button id="btn-edit" onclick="toggleEditMode()" class="bg-amber-600 hover:bg-amber-500 text-white text-xs px-3 py-2 rounded font-medium flex items-center transition">
+                    <i class="fa-solid fa-pen-to-square mr-1.5"></i> Mode Edit: OFF
+                </button>
+                <button id="btn-download" onclick="downloadJSON()" class="hidden bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-3 py-2 rounded font-medium flex items-center transition">
+                    <i class="fa-solid fa-download mr-1.5"></i> Simpan JSON
+                </button>
+                <button onclick="window.print()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-2 rounded font-medium flex items-center transition">
+                    <i class="fa-solid fa-print mr-1.5"></i> Cetak PDF
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- CONTAINER UTAMA -->
+    <!-- BANNER PERINGATAN MODE EDIT -->
+    <div id="edit-banner" class="no-print hidden bg-amber-500 text-slate-900 font-bold text-center text-xs py-2 px-4 shadow-inner">
+        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Mode Edit Aktif! Klik pada teks apapun di bawah untuk mengubahnya. Setelah selesai, klik tombol <u>"Simpan JSON"</u> di atas lalu upload ke GitHub.
+    </div>
+
+    <!-- CONTAINER UTAMA CV (Renders Dynamically from JSON) -->
     <main class="max-w-4xl mx-auto mt-6 px-4">
-
-        <!-- PROFIL 1: CUSTOMER EXPERT MODERATOR (TELEPERFORMANCE) -->
-        <div id="cv-teleperformance" class="cv-card space-y-5">
-            <div class="border-b-2 border-blue-900 pb-4 flex flex-row justify-between items-start gap-4 page-break-inside-avoid">
-                <div>
-                    <h1 class="text-2xl sm:text-3xl font-bold text-blue-900 uppercase tracking-wide">Muhammad Rizky Saputra</h1>
-                    <p class="text-blue-600 font-semibold text-sm sm:text-base mt-1 uppercase">Pelamar: Customer Expert Moderator — Teleperformance</p>
-                    <div class="text-xs sm:text-sm text-slate-600 mt-2 space-y-1">
-                        <p><i class="fa-solid fa-location-dot w-5 text-slate-400"></i> Surakarta, Jawa Tengah</p>
-                        <p><i class="fa-solid fa-envelope w-5 text-slate-400"></i> muhammadsaputra75@gmail.com</p>
-                        <p><a href="https://www.linkedin.com/in/muhammad-rizky-saputra-a6a405373" target="_blank" class="text-blue-600 hover:underline"><i class="fa-brands fa-linkedin w-5 text-slate-400"></i> linkedin.com/in/muhammad-rizky-saputra-a6a405373 &nbsp;|&nbsp;</a> <i class="fa-solid fa-globe w-5 text-slate-400"></i> <a href="https://kavimrs.github.io/my-portfolio" target="_blank" class="text-blue-600 hover:underline">link-portofolio.com</a></p>
-                    </div>
-                </div>
-                <img src="asset/46 biru.jpg" alt="Pasfoto 3x4" class="photo-placeholder">
-            </div>
-
-            <section class="page-break-inside-avoid">
-                <h2 class="section-title text-blue-900"><i class="fa-solid fa-user-tie mr-2"></i>Ringkasan Profil Executive</h2>
-                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
-                    Lulusan S1 Pendidikan Teknologi Informasi dan PPG yang memiliki latar belakang di bidang IT, komunikasi, dan pengelolaan media digital. Memiliki ketelitian dalam meninjau konten, terbiasa berinteraksi dengan publik, serta mampu mempelajari penggunaan sistem operasional baru dengan cepat. Siap berkontribusi dalam menjaga kualitas layanan, kepatuhan aturan platform, dan kepuasan pengguna.
-                </p>
-            </section>
-
-            <section class="page-break-inside-avoid">
-                <h2 class="section-title text-blue-900"><i class="fa-solid fa-gears mr-2"></i>Keahlian Utama & Kompetensi</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-                    <div class="skill-box">
-                        <span class="font-bold text-blue-700 block mb-1">• Teknis IT & Sistem</span>
-                        <p class="text-slate-600">Dasar Pemrograman (PPLG), Internet of Things (IoT), Troubleshooting Perangkat Keras/Lunak, Jaringan Dasar (MikroTik), Pemisahan & Pengelolaan Data (MS Office/Spreadsheet).</p>
-                    </div>
-                    <div class="skill-box">
-                        <span class="font-bold text-blue-700 block mb-1">• Media & Desain Digital</span>
-                        <p class="text-slate-600">Pengelolaan Media Sosial, Video & Image Editing (Adobe Premiere, After Effects, CorelDraw), Pembuatan Content Visual, Publikasi Informasi Digital.</p>
-                    </div>
-                    <div class="skill-box sm:col-span-2">
-                        <span class="font-bold text-blue-700 block mb-1">• Kemampuan Bahasa & Komunikasi</span>
-                        <p class="text-slate-600"><b>Bahasa Indonesia:</b> Penutur Asli (Native) &nbsp;|&nbsp; <b>Bahasa Inggris:</b> Intermediate (Lisan & Tulisan)</p>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title text-blue-900"><i class="fa-solid fa-briefcase mr-2"></i>Pengalaman Kerja & Pengajaran</h2>
-                <div class="space-y-3 text-xs sm:text-sm">
-                    <div class="page-break-inside-avoid">
-                        <div class="flex justify-between font-bold text-slate-800">
-                            <span>SMK Negeri 13 Bandung</span>
-                            <span class="text-slate-500 font-normal">2024 – 2025</span>
-                        </div>
-                        <div class="italic text-slate-600 text-xs mb-1">Guru Praktikan / PPL PPG (Program Keahlian PPLG & TKJ) — Bandung</div>
-                        <ul class="list-disc list-inside text-slate-700 space-y-1">
-                            <li>Mengampu mata pelajaran DPK & IoT (PPLG/RPL) serta Informatika Algoritma Pemrograman (TKJ).</li>
-                            <li>Mengevaluasi, meninjau, dan memoderasi tugas serta karya digital siswa sesuai standar etika dan kurikulum.</li>
-                            <li>Menganalisis serta menangani penyelesaian kendala teknis (<i>troubleshooting</i>) laboratorium secara responsif.</li>
-                        </ul>
-                    </div>
-                    <div class="page-break-inside-avoid">
-                        <div class="flex justify-between font-bold text-slate-800">
-                            <span>SMK Negeri 4 Tanjungpinang</span>
-                            <span class="text-slate-500 font-normal">2023 – 2024</span>
-                        </div>
-                        <div class="italic text-slate-600 text-xs mb-1">Guru Honorer (Program Keahlian TJKT) — Tanjungpinang</div>
-                        <ul class="list-disc list-inside text-slate-700 space-y-1">
-                            <li>Mengampu mata pelajaran ASJ, PKPJ, dan PKK.</li>
-                            <li>Menjalankan pengawasan operasional laboratorium dan memastikan kepatuhan penuh terhadap SOP.</li>
-                        </ul>
-                    </div>
-                    <div class="page-break-inside-avoid">
-                        <div class="flex justify-between font-bold text-slate-800">
-                            <span>Kemendikbudristek RI (Kampus Mengajar Angkatan 2)</span>
-                            <span class="text-slate-500 font-normal">Agt – Des 2021</span>
-                        </div>
-                        <div class="italic text-slate-600 text-xs mb-1">Pengajar & Fasilitator Adaptasi Teknologi — Surakarta</div>
-                        <ul class="list-disc list-inside text-slate-700 space-y-1">
-                            <li>Menganalisis kebutuhan adaptasi teknologi sekolah dan menyusun media digital interaktif yang aman dan edukatif.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title text-blue-900"><i class="fa-solid fa-users mr-2"></i>Pengalaman Organisasi</h2>
-                <div class="space-y-3 text-xs sm:text-sm">
-                    <div class="page-break-inside-avoid">
-                        <div class="flex justify-between font-bold text-slate-800">
-                            <span>Organisasi Taekwondo Unisri</span>
-                            <span class="text-slate-500 font-normal">2020 – 2022</span>
-                        </div>
-                        <div class="italic text-slate-600 text-xs mb-1">Ketua Media Center (2021–2022) & Staff Humas (2020–2021)</div>
-                        <ul class="list-disc list-inside text-slate-700 space-y-1">
-                            <li><b>Pengelolaan Media:</b> Meninjau, menyunting, dan memublikasikan konten visual/video untuk media sosial organisasi.</li>
-                            <li><b>Interaksi Publik:</b> Mengelola akun media sosial serta merespons pertanyaan dan komentar publik secara informatif dan sopan.</li>
-                        </ul>
-                    </div>
-                    <div class="page-break-inside-avoid">
-                        <div class="flex justify-between font-bold text-slate-800">
-                            <span>HIMATEK Unisri (Himpunan Mahasiswa PTI)</span>
-                            <span class="text-slate-500 font-normal">2020 – 2022</span>
-                        </div>
-                        <div class="italic text-slate-600 text-xs mb-1">Ketua Penelitian & Pengembangan (2021–2022)</div>
-                        <ul class="list-disc list-inside text-slate-700 space-y-1">
-                            <li>Memimpin evaluasi kualitas program kerja dan menganalisis masukan (<i>feedback</i>) mahasiswa.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1 page-break-inside-avoid">
-                <section>
-                    <h2 class="section-title text-blue-900"><i class="fa-solid fa-graduation-cap mr-2"></i>Pendidikan Formal</h2>
-                    <div class="text-xs sm:text-sm space-y-2">
-                        <div>
-                            <p class="font-bold text-slate-800">Universitas Pendidikan Indonesia (UPI)</p>
-                            <p class="text-slate-600 text-xs">PPG Pengembangan Perangkat Lunak & Gim | 2024–2025</p>
-                        </div>
-                        <div>
-                            <p class="font-bold text-slate-800">Universitas Slamet Riyadi (UNISRI)</p>
-                            <p class="text-slate-600 text-xs">S1 Pendidikan Teknologi Informasi (S.Pd.) | 2019–2023</p>
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <h2 class="section-title text-blue-900"><i class="fa-solid fa-certificate mr-2"></i>Sertifikasi Resmi</h2>
-                    <ul class="list-disc list-inside text-xs sm:text-sm text-slate-700 space-y-1">
-                        <li><b>Sertifikat Pendidik (Serdik) PPLG</b> — UPI & Kemendikbudristek (2025)</li>
-                        <li><b>Kampus Mengajar Angkatan 2</b> — Kemendikbudristek RI (2021)</li>
-                    </ul>
-                </section>
-            </div>
+        <div id="cv-card-container" class="cv-card space-y-5">
+            <!-- Konten CV dimuat oleh script.js secara otomatis -->
         </div>
-
-        <!-- PROFIL 2: GURU KEJURUAN SMK (PPLG / TJKT / INFORMATIKA) -->
-        <div id="cv-guru" class="cv-card space-y-5 hidden">
-            <div class="border-b-2 border-emerald-800 pb-4 flex flex-row justify-between items-start gap-4 page-break-inside-avoid">
-                <div>
-                    <h1 class="text-2xl sm:text-3xl font-bold text-emerald-900 uppercase tracking-wide">Muhammad Rizky Saputra, S.Pd., Gr.</h1>
-                    <p class="text-emerald-600 font-semibold text-sm sm:text-base mt-1 uppercase">Guru Kejuruan SMK (PPLG / TJKT / Informatika)</p>
-                    <div class="text-xs sm:text-sm text-slate-600 mt-2 space-y-1">
-                        <p><i class="fa-solid fa-location-dot w-5 text-slate-400"></i> Surakarta, Jawa Tengah</p>
-                        <p><i class="fa-solid fa-envelope w-5 text-slate-400"></i> muhammadsaputra75@gmail.com</p>
-                        <p><a href="https://www.linkedin.com/in/muhammad-rizky-saputra-a6a405373" target="_blank" class="text-blue-600 hover:underline"><i class="fa-brands fa-linkedin w-5 text-slate-400"></i> linkedin.com/in/muhammad-rizky-saputra-a6a405373 &nbsp;|&nbsp;</a> <i class="fa-solid fa-globe w-5 text-slate-400"></i> <a href="https://kavimrs.github.io/my-portfolio" target="_blank" class="text-blue-600 hover:underline">link-portofolio.com</a></p>
-                    </div>
-                </div>
-                <img src="asset/46 biru.jpg" alt="Pasfoto 3x4" class="photo-placeholder">
-            </div>
-
-            <section class="page-break-inside-avoid">
-                <h2 class="section-title text-emerald-900"><i class="fa-solid fa-user-graduate mr-2"></i>Ringkasan Profil Profesional</h2>
-                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
-                    Guru Kejuruan IT bersertifikat pendidik profesional (<b>Gr.</b>) lulusan S1 Pendidikan Teknologi Informasi dan PPG Bagi Guru Tertentu bidang studi PPLG (UPI Bandung). Memiliki pengalaman mengajar aktif di SMK Negeri mengampu program keahlian PPLG/RPL dan TJKT/TKJ serta mata pelajaran Informatika. Ahli dalam implementasi <b>Kurikulum Merdeka</b>, penyusunan Modul Ajar, perancangan pembelajaran berbasis proyek (<i>Project-Based Learning</i>), serta pengelolaan laboratorium komputer secara kondusif.
-                </p>
-            </section>
-
-            <section class="page-break-inside-avoid">
-                <h2 class="section-title text-emerald-900"><i class="fa-solid fa-book-open-reader mr-2"></i>Kompetensi Utama & Keahlian Pedagogik</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-                    <div class="skill-box">
-                        <span class="font-bold text-emerald-700 block mb-1">• Pedagogik & Kurikulum</span>
-                        <p class="text-slate-600">Kurikulum Merdeka, Modul Ajar/RPP, Asesmen Formatif/Sumatif, Project-Based Learning (PjBL), Pembelajaran Berdiferensiasi, Manajemen Kelas.</p>
-                    </div>
-                    <div class="skill-box">
-                        <span class="font-bold text-emerald-700 block mb-1">• Keahlian Produktif PPLG</span>
-                        <p class="text-slate-600">Dasar-Dasar PPLG (DPK), Logika & Algoritma Pemrograman, Pemrograman Web/Desktop, Internet of Things (IoT), Pemodelan Perangkat Lunak, UI/UX.</p>
-                    </div>
-                    <div class="skill-box">
-                        <span class="font-bold text-emerald-700 block mb-1">• Keahlian Produktif TJKT</span>
-                        <p class="text-slate-600">Administrasi Sistem Jaringan (ASJ), PKPJ, Hardware/Software Troubleshooting, MikroTik Networking, Produk Kreatif & Kewirausahaan (PKK).</p>
-                    </div>
-                    <div class="skill-box">
-                        <span class="font-bold text-emerald-700 block mb-1">• Media & EdTech Tools</span>
-                        <p class="text-slate-600">Google Classroom, LMS, Canva for Education, Adobe Creative Cloud, CorelDraw, MS Office, Pembelajaran Interaktif Digital.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title text-emerald-900"><i class="fa-solid fa-chalkboard-user mr-2"></i>Pengalaman Mengajar & Praktik Kependidikan</h2>
-                <div class="space-y-3 text-xs sm:text-sm">
-                    <div class="page-break-inside-avoid">
-                        <div class="flex justify-between font-bold text-slate-800">
-                            <span>SMK Negeri 13 Bandung</span>
-                            <span class="text-slate-500 font-normal">2024 – 2025</span>
-                        </div>
-                        <div class="italic text-slate-600 text-xs mb-1">Guru Praktikan / PPL PPG (Program Keahlian PPLG & TKJ) — Bandung</div>
-                        <ul class="list-disc list-inside text-slate-700 space-y-1">
-                            <li>Mengampu DPK & IoT untuk kelas X PPLG/RPL serta Informatika Algoritma Pemrograman untuk kelas X TKJ.</li>
-                            <li>Menyusun Modul Ajar, instrumen asesmen, dan media interaktif berbasis Kurikulum Merdeka.</li>
-                            <li>Mengevaluasi karya digital dan bimbingan <i>troubleshooting</i> perangkat keras/lunak laboratorium.</li>
-                        </ul>
-                    </div>
-                    <div class="page-break-inside-avoid">
-                        <div class="flex justify-between font-bold text-slate-800">
-                            <span>SMK Negeri 4 Tanjungpinang</span>
-                            <span class="text-slate-500 font-normal">2023 – 2024</span>
-                        </div>
-                        <div class="italic text-slate-600 text-xs mb-1">Guru Honorer (Program Keahlian TJKT) — Tanjungpinang</div>
-                        <ul class="list-disc list-inside text-slate-700 space-y-1">
-                            <li>Mengampu ASJ, PKPJ (kelas XI) dan PKK (kelas XII), membimbing proyek teknologi siswa.</li>
-                            <li>Mengelola tata tertib laboratorium jaringan serta pengawasan operasional praktikum.</li>
-                        </ul>
-                    </div>
-                    <div class="page-break-inside-avoid">
-                        <div class="flex justify-between font-bold text-slate-800">
-                            <span>Kemendikbudristek RI (Kampus Mengajar Angkatan 2)</span>
-                            <span class="text-slate-500 font-normal">Agt – Des 2021</span>
-                        </div>
-                        <div class="italic text-slate-600 text-xs mb-1">Pengajar & Fasilitator Adaptasi Teknologi — Surakarta</div>
-                        <ul class="list-disc list-inside text-slate-700 space-y-1">
-                            <li>Mengimplementasikan program literasi-numerasi digital dan pendampingan adaptasi teknologi guru.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1 page-break-inside-avoid">
-                <section>
-                    <h2 class="section-title text-emerald-900"><i class="fa-solid fa-graduation-cap mr-2"></i>Pendidikan Formal</h2>
-                    <div class="text-xs sm:text-sm space-y-2">
-                        <div>
-                            <p class="font-bold text-slate-800">Universitas Pendidikan Indonesia (UPI)</p>
-                            <p class="text-slate-600 text-xs">PPG Bagi Guru Tertentu (PPLG) | 2024–2025</p>
-                        </div>
-                        <div>
-                            <p class="font-bold text-slate-800">Universitas Slamet Riyadi (UNISRI)</p>
-                            <p class="text-slate-600 text-xs">S1 Pendidikan Teknologi Informasi (S.Pd.) | 2019–2023</p>
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <h2 class="section-title text-emerald-900"><i class="fa-solid fa-award mr-2"></i>Sertifikasi & Kualifikasi Guru</h2>
-                    <ul class="list-disc list-inside text-xs sm:text-sm text-slate-700 space-y-1">
-                        <li><b>Sertifikat Pendidik (Serdik) / Guru Profesional (Gr.)</b> — Kemendikbudristek & UPI (2025)</li>
-                        <li><b>Sertifikat Kampus Mengajar Angkatan 2</b> — Kemendikbudristek RI (2021)</li>
-                    </ul>
-                </section>
-            </div>
-        </div>
-
     </main>
 
 </body>
