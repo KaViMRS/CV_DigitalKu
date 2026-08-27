@@ -58,6 +58,118 @@
 /* =========================================================
    KUSTOMISASI TAMPILAN WEB (MONITOR)
    ========================================================= */
+.header-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-brand {
+    white-space: nowrap;
+    font-size: 0.95rem;
+}
+
+.profile-tabs {
+    justify-self: center;
+    max-width: 100%;
+}
+
+.action-toolbar {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.action-toolbar button {
+    white-space: nowrap;
+}
+
+.main-footer {
+    max-width: 56rem;
+    margin: 2rem auto 0;
+    padding: 1rem 1rem 0;
+    border-top: 1px solid #cbd5e1;
+    color: #64748b;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+@media (max-width: 639px) {
+    .main-footer {
+        margin-top: 1.5rem;
+        padding-top: 0.85rem;
+    }
+}
+
+@media (max-width: 1023px) {
+    .header-inner {
+        grid-template-columns: auto 1fr;
+    }
+
+    .profile-tabs {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: stretch;
+        justify-content: center;
+    }
+
+    .action-toolbar {
+        justify-self: end;
+    }
+}
+
+@media (max-width: 639px) {
+    .header-inner {
+        gap: 0.65rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+    }
+
+    .header-brand {
+        font-size: 0.8rem;
+    }
+
+    .header-brand i {
+        margin-right: 0.35rem;
+    }
+
+    .action-toolbar {
+        gap: 0.35rem;
+    }
+
+    .action-toolbar button {
+        padding: 0.45rem 0.55rem;
+        font-size: 0.68rem;
+    }
+
+    .action-toolbar button i {
+        margin-right: 0 !important;
+    }
+
+    .action-toolbar button:not(#btn-edit) {
+        font-size: 0;
+    }
+
+    .action-toolbar button:not(#btn-edit) i {
+        font-size: 0.75rem;
+    }
+
+    .profile-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+    }
+
+    .profile-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab-btn {
+        flex: 0 0 auto;
+    }
+}
+
 .cv-card {
     background-color: #ffffff;
     border-radius: 0.75rem;

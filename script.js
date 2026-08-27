@@ -2,22 +2,96 @@ let cvData = {};
 let currentProfile = 'teleperformance';
 let isEditMode = false;
 
-// Load data.json saat halaman dibuka
+// ================= =========================================
+// KONTROL LOGIN & KEAMANAN (HASH)
+// ==========================================================
+// Kredensial Default:
+// Username : admin
+// Password : wifirumah
+const CONFIG_USER = "admin";
+// Hash SHA-256 dari password "wifi":
+const CONFIG_PASS_HASH = "26d7283780f81206a9fdde9301a90b4d54c8a6174d0308784a7563a1897cf432";
+
+/**
+ * Fungsi pembantu enkripsi menggunakan Web Crypto API bawaan browser
+ */
+async function sha256(plainText) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(plainText);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Cek status autentikasi saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('data.json')
-        .then(response => {
-            if (!response.ok) throw new Error("Gagal memuat data.json");
-            return response.json();
-        })
-        .then(data => {
-            cvData = data;
-            renderCV(currentProfile);
-        })
-        .catch(err => {
-            console.error("Error loading JSON:", err);
-            document.getElementById('cv-card-container').innerHTML = `<p class="text-red-600 font-bold text-center">Gagal memuat file data.json. Pastikan file data.json berada di folder yang sama dengan index.html.</p>`;
-        });
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+    if (isLoggedIn) {
+        showApp();
+    } else {
+        showLogin();
+    }
 });
+
+function showLogin() {
+    document.getElementById('login-screen')?.classList.remove('hidden');
+    document.getElementById('main-header')?.classList.add('hidden');
+    document.getElementById('main-content')?.classList.add('hidden');
+    document.getElementById('main-footer')?.classList.add('hidden');
+    document.getElementById('edit-banner')?.classList.add('hidden');
+}
+
+function showApp() {
+    document.getElementById('login-screen')?.classList.add('hidden');
+    document.getElementById('main-header')?.classList.remove('hidden');
+    document.getElementById('main-content')?.classList.remove('hidden');
+    document.getElementById('main-footer')?.classList.remove('hidden');
+    
+    // Memuat data.json jika data belum ada
+    if (Object.keys(cvData).length === 0) {
+        fetch('data.json')
+            .then(response => {
+                if (!response.ok) throw new Error("Gagal memuat data.json");
+                return response.json();
+            })
+            .then(data => {
+                cvData = data;
+                renderCV(currentProfile);
+            })
+            .catch(err => {
+                console.error("Error loading JSON:", err);
+                document.getElementById('cv-card-container').innerHTML = `<p class="text-red-600 font-bold text-center">Gagal memuat file data.json. Pastikan file data.json berada di folder yang sama dengan index.html.</p>`;
+            });
+    }
+}
+
+async function handleLogin(e) {
+    e.preventDefault();
+    const userInput = document.getElementById('username').value.trim();
+    const passInput = document.getElementById('password').value;
+    const errorEl = document.getElementById('login-error');
+
+    // Hash input password yang dimasukkan user
+    const hashedInput = await sha256(passInput);
+
+    if (userInput === CONFIG_USER && hashedInput === CONFIG_PASS_HASH) {
+        sessionStorage.setItem('isLoggedIn', 'true');
+        errorEl.classList.add('hidden');
+        showApp();
+    } else {
+        errorEl.classList.remove('hidden');
+    }
+}
+
+function handleLogout() {
+    sessionStorage.removeItem('isLoggedIn');
+    location.reload();
+}
+
+// ==========================================================
+// FITUR BAWAAN CV (TETAP SAMA SEPERTI SEBELUMNYA)
+// ==========================================================
 
 /**
  * Mengganti Profil CV yang Tampil
@@ -108,7 +182,7 @@ function renderCV(profileKey) {
                     <p><i class="fa-solid fa-location-dot w-5 text-slate-400"></i> <span data-bind="location">${data.location}</span></p>
                     <p><i class="fa-solid fa-envelope w-5 text-slate-400"></i> <span data-bind="email">${data.email}</span></p>
                     <p>
-                        <a href="${data.linkedinUrl}" target="_blank" class="text-blue-600 hover:underline"><i class="fa-brands fa-linkedin w-5 text-slate-400"></i> <span data-bind="linkedin">${data.linkedin}</span> &nbsp;|&nbsp;</a> 
+                        <i class="fa-solid fa-phone w-5 text-slate-400"></i> <span data-bind="phone">${data.phone}</span> &nbsp;|&nbsp;
                         <i class="fa-solid fa-globe w-5 text-slate-400"></i> <a href="${data.portfolioUrl}" target="_blank" class="text-blue-600 hover:underline"><span data-bind="portfolio">${data.portfolio}</span></a>
                     </p>
                 </div>
