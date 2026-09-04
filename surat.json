@@ -1,0 +1,35 @@
+{
+  "city": "Surakarta",
+  "date": "25 Agustus 2026",
+  "lampiran": "5 (Lima) Lembar",
+  "perihal": "Lamaran pekerjaan sebagai Customer Expert Moderator",
+  "tujuanKepada": "Kepada Yth.",
+  "tujuanNama": "HRD PT. Teleperformance",
+  "tujuanAlamat": "Surakarta, Jawa Tengah",
+  "salamPembuka": "Dengan hormat,",
+  "paragrafPembuka": "Berdasarkan informasi lowongan pekerjaan yang saya dapatkan, saya bermaksud untuk mengajukan diri bergabung dengan PT. Teleperformance pada posisi Customer Expert Moderator.",
+  "labelDataDiri": "Berikut adalah data diri singkat saya:",
+  "personalInfo": [
+    { "label": "Nama", "value": "Muhammad Rizky Saputra" },
+    { "label": "Tempat / tgl. Lahir", "value": "Surakarta / 04 September 2000" },
+    { "label": "Pendidikan Terakhir", "value": "S1 Pendidikan Teknologi Informasi" },
+    { "label": "Alamat", "value": "Jl. Prof DR Suharso, Jajar, Laweyan, Surakarta" },
+    { "label": "No. Telepon", "value": "088981012143" }
+  ],
+  "bodyParagraphs": [
+    "Saya memiliki latar belakang pendidikan di bidang Teknologi Informasi. Melalui pengalaman mengajar dan berorganisasi, saya terbiasa mengelola media digital, meninjau konten, serta berkomunikasi dengan publik. Saya juga dapat mengoperasikan komputer dengan baik (MS Office, Spreadsheet, serta software desain/editing) dan memiliki kemampuan bahasa Inggris tingkat menengah.",
+    "Dengan integritas, ketelitian, dan pemahaman teknis yang saya miliki, saya siap berkontribusi aktif dalam menjaga kepatuhan aturan platform (policy compliance), kualitas layanan, serta kepuasan pengguna di PT. Teleperformance."
+  ],
+  "lampiranHeader": "Sebagai bahan pertimbangan Bapak/Ibu, bersama surat ini saya lampirkan:",
+  "attachments": [
+    "Curriculum Vitae (CV) Terbaru",
+    "Fotokopi Ijazah S1",
+    "Fotokopi KTP",
+    "Fotokopi Sertifikat Pelatihan & Pengalaman",
+    "Pasfoto Terbaru"
+  ],
+  "paragrafPenutup": "Demikian surat lamaran ini saya sampaikan. Atas perhatian Bapak/Ibu, saya ucapkan terima kasih.",
+  "salamPenutup": "Hormat saya,",
+  "signatureName": "Muhammad Rizky Saputra",
+  "signatureImage": "asset/ttd.png"
+}
