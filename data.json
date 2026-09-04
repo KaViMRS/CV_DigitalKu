@@ -261,5 +261,25 @@
       "Sertifikat Pendidik (Serdik) Bidang PPLG — Kemendikbudristek RI (2025)",
       "Sertifikat Program Kampus Mengajar — Kemendikbudristek RI (2021)"
     ]
+  },
+  "coverLetter": {
+    "date": "Surakarta, 25 Agustus 2026",
+    "lampiran": "5 (Lima) Lembar",
+    "perihal": "Lamaran pekerjaan sebagai Customer Expert Moderator",
+    "recipient": "HRD PT. Teleperformance\nSurakarta, Jawa Tengah",
+    "greeting": "Dengan hormat,",
+    "opening": "Berdasarkan informasi lowongan pekerjaan yang saya dapatkan, saya bermaksud untuk mengajukan diri bergabung dengan PT. Teleperformance pada posisi Customer Expert Moderator.",
+    "personalData": {
+      "name": "Muhammad Rizky Saputra",
+      "pobDob": "Surakarta / 04 September 2000",
+      "education": "S1 Pendidikan Teknologi Informasi",
+      "address": "Jl. Prof DR Suharso, Jajar, Laweyan, Surakarta",
+      "phone": "088981012143"
+    },
+    "body1": "Saya memiliki latar belakang pendidikan di bidang Teknologi Informasi. Melalui pengalaman mengajar dan berorganisasi, saya terbiasa mengelola media digital, meninjau konten, serta berkomunikasi dengan publik. Saya juga dapat mengoperasikan komputer dengan baik (MS Office, Spreadsheet, serta software desain/editing) dan memiliki kemampuan bahasa Inggris tingkat menengah.",
+    "body2": "Dengan integritas, ketelitian, dan pemahaman teknis yang saya miliki, saya siap berkontribusi aktif dalam menjaga kepatuhan aturan platform (policy compliance), kualitas layanan, serta kepuasan pengguna di PT. Teleperformance.",
+    "closing": "Sebagai bahan pertimbangan Bapak/Ibu, bersama surat ini saya lampirkan:",
+    "attachments": "1. Curriculum Vitae (CV) Terbaru\n2. Fotokopi Ijazah S1\n3. Fotokopi KTP\n4. Fotokopi Sertifikat Pelatihan & Pengalaman\n5. Pasfoto Terbaru",
+    "finalClosing": "Demikian surat lamaran ini saya sampaikan. Atas perhatian Bapak/Ibu, saya ucapkan terima kasih."
   }
 }
