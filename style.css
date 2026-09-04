@@ -53,6 +53,23 @@
         break-inside: avoid !important;
         page-break-inside: avoid !important;
     }
+   /* Sembunyikan elemen navigasi saat diprint */
+    button, nav, header, #btn-tab-cv, #btn-tab-surat, .profile-tabs-container {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    #section-surat {
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
 }
 
 /* =========================================================
