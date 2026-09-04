@@ -58,15 +58,25 @@
 
     <!-- NAVIGASI / PROFILE SWITCHER -->
     <header id="main-header" class="no-print sticky top-0 z-50 bg-slate-900 text-white shadow-md hidden">
-        <div class="header-inner max-w-4xl mx-auto px-4 py-3">
-            <div class="header-brand font-bold text-lg tracking-wide text-blue-400">
+        <div class="header-inner max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="header-brand font-bold text-lg tracking-wide text-blue-400 flex items-center">
                 <i class="fa-solid fa-id-card mr-2"></i>CV DIGITALKU
             </div>
             
-            <!-- Tombol Switch Tab (3 Profil) -->
-            <div class="profile-tabs flex flex-wrap justify-center bg-slate-800 p-1 rounded-lg border border-slate-700 gap-1">
+            <!-- View Switcher (CV vs Surat) -->
+            <div class="flex bg-slate-800 p-1 rounded-lg border border-slate-700">
+                <button id="view-btn-cv" onclick="switchView('cv')" class="px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md bg-blue-600 text-white shadow">
+                    <i class="fa-solid fa-file-lines mr-1"></i> CV
+                </button>
+                <button id="view-btn-letter" onclick="switchView('letter')" class="px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md text-slate-300 hover:text-white transition">
+                    <i class="fa-solid fa-envelope-open-text mr-1"></i> Surat Lamaran
+                </button>
+            </div>
+
+            <!-- Tombol Switch Tab (3 Profil) -> Hanya Muncul di Mode CV -->
+            <div id="profile-tabs-container" class="profile-tabs flex flex-wrap justify-center bg-slate-800 p-1 rounded-lg border border-slate-700 gap-1">
                 <button id="btn-teleperformance" onclick="switchTab('teleperformance')" class="tab-btn active-tele">
-                    <i class="fa-solid fa-headset mr-1"></i> Tecnology
+                    <i class="fa-solid fa-headset mr-1"></i> Technology
                 </button>
                 <button id="btn-guru" onclick="switchTab('guru')" class="tab-btn inactive">
                     <i class="fa-solid fa-chalkboard-user mr-1"></i> Guru / Teacher
@@ -96,13 +106,23 @@
 
     <!-- BANNER PERINGATAN MODE EDIT -->
     <div id="edit-banner" class="no-print hidden bg-amber-500 text-slate-900 font-bold text-center text-xs py-2 px-4 shadow-inner">
-        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Mode Edit Aktif! Klik pada teks apapun di bawah untuk mengubahnya. Setelah selesai, klik tombol <u>"Simpan JSON"</u> di atas lalu upload ke GitHub.
+        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Mode Edit Aktif! Klik teks untuk mengubah, atau upload tanda tangan (khusus Surat Lamaran).
     </div>
 
-    <!-- CONTAINER UTAMA CV (Renders Dynamically from JSON) -->
+    <!-- CONTAINER UTAMA CV -->
     <main id="main-content" class="max-w-4xl mx-auto mt-6 px-4 hidden">
         <div id="cv-card-container" class="cv-card space-y-5">
             <!-- Konten CV dimuat oleh script.js secara otomatis -->
+        </div>
+    </main>
+
+    <!-- CONTAINER SURAT LAMARAN -->
+    <main id="letter-content" class="max-w-4xl mx-auto mt-6 px-4 hidden">
+        <div class="cv-card bg-white text-slate-800" style="font-family: 'Times New Roman', Times, serif; font-size: 11pt; line-height: 1.5;">
+            <!-- Konten Surat dimuat oleh script.js -->
+            <div id="letter-card-container" class="space-y-4 text-justify">
+                <!-- Data disuntikkan ke sini -->
+            </div>
         </div>
     </main>
 
