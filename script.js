@@ -1,6 +1,7 @@
 let cvData = {};
 let currentProfile = 'teleperformance';
 let isEditMode = false;
+let currentViewMode = 'cv'; // 'cv' atau 'letter'
 
 // ================= =========================================
 // KONTROL LOGIN & KEAMANAN (HASH)
@@ -38,6 +39,7 @@ function showLogin() {
     document.getElementById('login-screen')?.classList.remove('hidden');
     document.getElementById('main-header')?.classList.add('hidden');
     document.getElementById('main-content')?.classList.add('hidden');
+    document.getElementById('letter-content')?.classList.add('hidden');
     document.getElementById('main-footer')?.classList.add('hidden');
     document.getElementById('edit-banner')?.classList.add('hidden');
 }
@@ -45,7 +47,6 @@ function showLogin() {
 function showApp() {
     document.getElementById('login-screen')?.classList.add('hidden');
     document.getElementById('main-header')?.classList.remove('hidden');
-    document.getElementById('main-content')?.classList.remove('hidden');
     document.getElementById('main-footer')?.classList.remove('hidden');
     
     // Memuat data.json jika data belum ada
@@ -57,7 +58,7 @@ function showApp() {
             })
             .then(data => {
                 cvData = data;
-                renderCV(currentProfile);
+                switchView('cv'); // Default view
             })
             .catch(err => {
                 console.error("Error loading JSON:", err);
@@ -90,12 +91,38 @@ function handleLogout() {
 }
 
 // ==========================================================
-// FITUR BAWAAN CV (TETAP SAMA SEPERTI SEBELUMNYA)
+// VIEW SWITCHER (CV VS SURAT LAMARAN)
 // ==========================================================
+function switchView(view) {
+    if (isEditMode) saveCurrentEditsToMemory();
+    currentViewMode = view;
 
-/**
- * Mengganti Profil CV yang Tampil
- */
+    const btnCV = document.getElementById('view-btn-cv');
+    const btnLetter = document.getElementById('view-btn-letter');
+    const cvContent = document.getElementById('main-content');
+    const letterContent = document.getElementById('letter-content');
+    const profileTabs = document.getElementById('profile-tabs-container');
+
+    if (view === 'cv') {
+        btnCV.className = "px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md bg-blue-600 text-white shadow";
+        btnLetter.className = "px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md text-slate-300 hover:text-white transition";
+        cvContent.classList.remove('hidden');
+        letterContent.classList.add('hidden');
+        profileTabs.classList.remove('hidden');
+        renderCV(currentProfile);
+    } else {
+        btnLetter.className = "px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md bg-emerald-600 text-white shadow";
+        btnCV.className = "px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md text-slate-300 hover:text-white transition";
+        cvContent.classList.add('hidden');
+        letterContent.classList.remove('hidden');
+        profileTabs.classList.add('hidden');
+        renderLetter();
+    }
+}
+
+// ==========================================================
+// FITUR CV
+// ==========================================================
 function switchTab(profile) {
     if (isEditMode) saveCurrentEditsToMemory();
     currentProfile = profile;
@@ -111,9 +138,6 @@ function switchTab(profile) {
     renderCV(currentProfile);
 }
 
-/**
- * Render Tampilan CV Berdasarkan Data JSON
- */
 function renderCV(profileKey) {
     const data = cvData[profileKey];
     if (!data) return;
@@ -124,7 +148,6 @@ function renderCV(profileKey) {
     const subColorClass = data.themeColor === 'blue' ? 'text-blue-600' : 
                          data.themeColor === 'emerald' ? 'text-emerald-600' : 'text-indigo-600';
 
-    // Skills HTML
     let skillsHTML = data.skills.map((s, idx) => `
         <div class="skill-box ${idx === data.skills.length - 1 && data.skills.length % 2 !== 0 ? 'sm:col-span-2' : ''}">
             <span class="font-bold ${subColorClass} block mb-1" data-bind="skills.${idx}.category">• ${s.category}</span>
@@ -132,7 +155,6 @@ function renderCV(profileKey) {
         </div>
     `).join('');
 
-    // Experience HTML
     let expHTML = data.experience.map((e, eIdx) => `
         <div class="page-break-inside-avoid">
             <div class="flex justify-between font-bold text-slate-800">
@@ -146,7 +168,6 @@ function renderCV(profileKey) {
         </div>
     `).join('');
 
-    // Organization HTML
     let orgHTML = data.organization.map((o, oIdx) => `
         <div class="page-break-inside-avoid">
             <div class="flex justify-between font-bold text-slate-800">
@@ -160,7 +181,6 @@ function renderCV(profileKey) {
         </div>
     `).join('');
 
-    // Education HTML
     let eduHTML = data.education.map((ed, edIdx) => `
         <div>
             <p class="font-bold text-slate-800" data-bind="education.${edIdx}.school">${ed.school}</p>
@@ -168,7 +188,6 @@ function renderCV(profileKey) {
         </div>
     `).join('');
 
-    // Certifications HTML
     let certHTML = data.certifications.map((c, cIdx) => `
         <li data-bind="certifications.${cIdx}">${c}</li>
     `).join('');
@@ -225,9 +244,98 @@ function renderCV(profileKey) {
     if (isEditMode) applyEditableState(true);
 }
 
-/**
- * Toggle Mode Edit
- */
+// ==========================================================
+// FITUR SURAT LAMARAN
+// ==========================================================
+function renderLetter() {
+    const data = cvData['coverLetter'];
+    if (!data) return;
+
+    const container = document.getElementById('letter-card-container');
+    container.innerHTML = `
+        <div class="text-right mb-6" data-bind-letter="date">${data.date}</div>
+        
+        <div class="mb-4 whitespace-pre-line">
+            <div>Lampiran: <span data-bind-letter="lampiran">${data.lampiran}</span></div>
+            <div>Perihal: <span data-bind-letter="perihal">${data.perihal}</span></div>
+        </div>
+
+        <div class="mb-6 whitespace-pre-line">
+            Kepada Yth.<br>
+            <span data-bind-letter="recipient">${data.recipient}</span>
+        </div>
+
+        <div class="mb-2" data-bind-letter="greeting">${data.greeting}</div>
+        
+        <p class="mb-4" data-bind-letter="opening">${data.opening}</p>
+
+        <p class="mb-2">Berikut adalah data diri singkat saya:</p>
+        <table class="letter-table mb-4 w-full">
+            <tr>
+                <td>Nama</td><td>:</td>
+                <td data-bind-letter="personalData.name">${data.personalData.name}</td>
+            </tr>
+            <tr>
+                <td>Tempat / tgl. Lahir</td><td>:</td>
+                <td data-bind-letter="personalData.pobDob">${data.personalData.pobDob}</td>
+            </tr>
+            <tr>
+                <td>Pendidikan Terakhir</td><td>:</td>
+                <td data-bind-letter="personalData.education">${data.personalData.education}</td>
+            </tr>
+            <tr>
+                <td>Alamat</td><td>:</td>
+                <td data-bind-letter="personalData.address">${data.personalData.address}</td>
+            </tr>
+            <tr>
+                <td>No. Telepon</td><td>:</td>
+                <td data-bind-letter="personalData.phone">${data.personalData.phone}</td>
+            </tr>
+        </table>
+
+        <p class="mb-4" data-bind-letter="body1">${data.body1}</p>
+        <p class="mb-4" data-bind-letter="body2">${data.body2}</p>
+        <p class="mb-2" data-bind-letter="closing">${data.closing}</p>
+        
+        <div class="mb-4 ml-6 whitespace-pre-line" data-bind-letter="attachments">${data.attachments}</div>
+        
+        <p class="mb-12" data-bind-letter="finalClosing">${data.finalClosing}</p>
+
+        <div class="flex flex-col items-end text-center no-page-break">
+            <p>Hormat saya,</p>
+            
+            <div id="signature-wrapper" class="relative h-20 w-40 flex items-center justify-center my-2">
+                <img id="signature-img" class="max-h-full max-w-full hidden object-contain" />
+                
+                <label id="btn-upload-sig" class="hidden no-print cursor-pointer bg-slate-200 text-slate-700 hover:bg-slate-300 text-xs px-3 py-2 rounded shadow-sm border border-slate-300 transition absolute">
+                    <i class="fa-solid fa-upload mr-1"></i> Upload TTD
+                    <input type="file" accept="image/*" class="hidden" onchange="handleSignatureUpload(event)">
+                </label>
+            </div>
+
+            <p class="font-bold underline" data-bind-letter="personalData.name">${data.personalData.name}</p>
+        </div>
+    `;
+
+    if (isEditMode) applyEditableState(true);
+}
+
+function handleSignatureUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const imgEl = document.getElementById('signature-img');
+        const btnUpload = document.getElementById('btn-upload-sig');
+        
+        imgEl.src = URL.createObjectURL(file);
+        imgEl.classList.remove('hidden');
+        
+        btnUpload.classList.add('opacity-50', 'hover:opacity-100', 'top-0', '-right-4', 'scale-75');
+    }
+}
+
+// ==========================================================
+// KONTROL MODE EDIT & EXPORT JSON
+// ==========================================================
 function toggleEditMode() {
     isEditMode = !isEditMode;
     const btnEdit = document.getElementById('btn-edit');
@@ -251,42 +359,63 @@ function toggleEditMode() {
 }
 
 function applyEditableState(enable) {
-    const container = document.getElementById('cv-card-container');
-    if (enable) container.classList.add('editing-active');
-    else container.classList.remove('editing-active');
+    const cvContainer = document.getElementById('cv-card-container');
+    const letterContainer = document.getElementById('letter-card-container');
+    const btnUploadSig = document.getElementById('btn-upload-sig');
+    
+    if (enable) {
+        cvContainer.classList.add('editing-active');
+        if(letterContainer) letterContainer.classList.add('editing-active');
+        if(btnUploadSig) btnUploadSig.classList.remove('hidden');
+    } else {
+        cvContainer.classList.remove('editing-active');
+        if(letterContainer) letterContainer.classList.remove('editing-active');
+        if(btnUploadSig) btnUploadSig.classList.add('hidden');
+    }
 
-    const elements = container.querySelectorAll('[data-bind]');
+    const elements = document.querySelectorAll('[data-bind], [data-bind-letter]');
     elements.forEach(el => {
         el.contentEditable = enable ? "true" : "false";
     });
 }
 
-/**
- * Menyimpan Edits dari DOM ke Memori `cvData`
- */
 function saveCurrentEditsToMemory() {
-    const container = document.getElementById('cv-card-container');
-    const elements = container.querySelectorAll('[data-bind]');
-    
-    elements.forEach(el => {
-        const path = el.getAttribute('data-bind').split('.');
-        let target = cvData[currentProfile];
+    if (currentViewMode === 'cv') {
+        const cvContainer = document.getElementById('cv-card-container');
+        const elements = cvContainer.querySelectorAll('[data-bind]');
         
-        for (let i = 0; i < path.length - 1; i++) {
-            target = target[path[i]];
-        }
+        elements.forEach(el => {
+            const path = el.getAttribute('data-bind').split('.');
+            let target = cvData[currentProfile];
+            
+            for (let i = 0; i < path.length - 1; i++) {
+                target = target[path[i]];
+            }
+            
+            let text = el.innerText.trim();
+            if (path[path.length - 1] === 'category' && text.startsWith('• ')) {
+                text = text.replace('• ', '');
+            }
+            target[path[path.length - 1]] = text;
+        });
+    } 
+    else if (currentViewMode === 'letter') {
+        const letterContainer = document.getElementById('letter-card-container');
+        const elements = letterContainer.querySelectorAll('[data-bind-letter]');
         
-        let text = el.innerText.trim();
-        if (path[path.length - 1] === 'category' && text.startsWith('• ')) {
-            text = text.replace('• ', '');
-        }
-        target[path[path.length - 1]] = text;
-    });
+        elements.forEach(el => {
+            const path = el.getAttribute('data-bind-letter').split('.');
+            let target = cvData['coverLetter'];
+            
+            for (let i = 0; i < path.length - 1; i++) {
+                target = target[path[i]];
+            }
+            
+            target[path[path.length - 1]] = el.innerText.trim();
+        });
+    }
 }
 
-/**
- * Download data.json Terbaru
- */
 function downloadJSON() {
     saveCurrentEditsToMemory();
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cvData, null, 2));
