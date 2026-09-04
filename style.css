@@ -24,6 +24,10 @@
     .no-print {
         display: none !important;
     }
+    
+    .hidden {
+        display: none !important;
+    }
 
     main {
         max-width: 100% !important;
@@ -49,7 +53,8 @@
     .page-break-inside-avoid,
     .skill-box,
     div.space-y-4 > div,
-    div.space-y-3 > div {
+    div.space-y-3 > div,
+    .no-page-break {
         break-inside: avoid !important;
         page-break-inside: avoid !important;
     }
@@ -266,4 +271,20 @@
 .editing-active [contenteditable="true"]:focus {
     outline: 2px solid #d97706;
     background-color: #fef3c7;
+}
+
+/* =========================================================
+   STYLE TAMBAHAN UNTUK SURAT LAMARAN
+   ========================================================= */
+.letter-table td {
+    vertical-align: top;
+    padding-bottom: 0.25rem;
+}
+.letter-table td:first-child {
+    white-space: nowrap;
+    width: 150px;
+}
+.letter-table td:nth-child(2) {
+    width: 15px;
+    text-align: center;
 }
