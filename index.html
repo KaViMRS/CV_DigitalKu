@@ -94,6 +94,17 @@
         </div>
     </header>
 
+            <!-- Tambahkan di bawah header pilihan profil / sebelum kontainer utama CV -->
+        <div class="flex justify-center gap-3 my-4">
+            <button id="btn-tab-cv" onclick="switchTab('cv')" class="px-5 py-2 rounded-lg font-medium bg-blue-600 text-white shadow transition">Curriculum Vitae (CV)</button>
+            <button id="btn-tab-surat" onclick="switchTab('surat')" class="px-5 py-2 rounded-lg font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition">Surat Lamaran Kerja</button>
+        </div>
+        
+        <!-- Kontainer Utama Surat Lamaran (Awalnya hidden jika tab CV aktif) -->
+        <div id="section-surat" class="hidden max-w-3xl mx-auto bg-white p-8 md:p-14 shadow-xl rounded-xl mb-12 text-gray-800 leading-relaxed font-serif relative">
+            <!-- Isi surat akan dirender dinamis via JavaScript dari surat.json -->
+        </div>    
+
     <!-- BANNER PERINGATAN MODE EDIT -->
     <div id="edit-banner" class="no-print hidden bg-amber-500 text-slate-900 font-bold text-center text-xs py-2 px-4 shadow-inner">
         <i class="fa-solid fa-triangle-exclamation mr-1"></i> Mode Edit Aktif! Klik pada teks apapun di bawah untuk mengubahnya. Setelah selesai, klik tombol <u>"Simpan JSON"</u> di atas lalu upload ke GitHub.
