@@ -6,16 +6,9 @@ let currentViewMode = 'cv'; // 'cv' atau 'letter'
 // ================= =========================================
 // KONTROL LOGIN & KEAMANAN (HASH)
 // ==========================================================
-// Kredensial Default:
-// Username : admin
-// Password : wifirumah
 const CONFIG_USER = "admin";
-// Hash SHA-256 dari password "wifi":
 const CONFIG_PASS_HASH = "26d7283780f81206a9fdde9301a90b4d54c8a6174d0308784a7563a1897cf432";
 
-/**
- * Fungsi pembantu enkripsi menggunakan Web Crypto API bawaan browser
- */
 async function sha256(plainText) {
     const encoder = new TextEncoder();
     const data = encoder.encode(plainText);
@@ -24,7 +17,6 @@ async function sha256(plainText) {
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// Cek status autentikasi saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
     const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
@@ -49,7 +41,6 @@ function showApp() {
     document.getElementById('main-header')?.classList.remove('hidden');
     document.getElementById('main-footer')?.classList.remove('hidden');
     
-    // Memuat data.json jika data belum ada
     if (Object.keys(cvData).length === 0) {
         fetch('data.json')
             .then(response => {
@@ -58,7 +49,7 @@ function showApp() {
             })
             .then(data => {
                 cvData = data;
-                switchView('cv'); // Default view
+                switchView('cv'); 
             })
             .catch(err => {
                 console.error("Error loading JSON:", err);
@@ -72,8 +63,6 @@ async function handleLogin(e) {
     const userInput = document.getElementById('username').value.trim();
     const passInput = document.getElementById('password').value;
     const errorEl = document.getElementById('login-error');
-
-    // Hash input password yang dimasukkan user
     const hashedInput = await sha256(passInput);
 
     if (userInput === CONFIG_USER && hashedInput === CONFIG_PASS_HASH) {
@@ -253,24 +242,24 @@ function renderLetter() {
 
     const container = document.getElementById('letter-card-container');
     container.innerHTML = `
-        <div class="text-right mb-6" data-bind-letter="date">${data.date}</div>
+        <div class="text-right mb-4" data-bind-letter="date">${data.date}</div>
         
-        <div class="mb-4 whitespace-pre-line">
+        <div class="mb-3 whitespace-pre-line">
             <div>Lampiran: <span data-bind-letter="lampiran">${data.lampiran}</span></div>
             <div>Perihal: <span data-bind-letter="perihal">${data.perihal}</span></div>
         </div>
 
-        <div class="mb-6 whitespace-pre-line">
+        <div class="mb-4 whitespace-pre-line">
             Kepada Yth.<br>
             <span data-bind-letter="recipient">${data.recipient}</span>
         </div>
 
         <div class="mb-2" data-bind-letter="greeting">${data.greeting}</div>
         
-        <p class="mb-4" data-bind-letter="opening">${data.opening}</p>
+        <p class="mb-2" data-bind-letter="opening">${data.opening}</p>
 
-        <p class="mb-2">Berikut adalah data diri singkat saya:</p>
-        <table class="letter-table mb-4 w-full">
+        <p class="mb-1">Berikut adalah data diri singkat saya:</p>
+        <table class="letter-table mb-3 w-full">
             <tr>
                 <td>Nama</td><td>:</td>
                 <td data-bind-letter="personalData.name">${data.personalData.name}</td>
@@ -293,22 +282,23 @@ function renderLetter() {
             </tr>
         </table>
 
-        <p class="mb-4" data-bind-letter="body1">${data.body1}</p>
-        <p class="mb-4" data-bind-letter="body2">${data.body2}</p>
+        <p class="mb-2" data-bind-letter="body1">${data.body1}</p>
+        <p class="mb-2" data-bind-letter="body2">${data.body2}</p>
         <p class="mb-2" data-bind-letter="closing">${data.closing}</p>
         
-        <div class="mb-4 ml-6 whitespace-pre-line" data-bind-letter="attachments">${data.attachments}</div>
+        <div class="mb-3 ml-6 whitespace-pre-line" data-bind-letter="attachments">${data.attachments}</div>
         
-        <p class="mb-12" data-bind-letter="finalClosing">${data.finalClosing}</p>
+        <p class="mb-6" data-bind-letter="finalClosing">${data.finalClosing}</p>
 
         <div class="flex flex-col items-end text-center no-page-break">
             <p>Hormat saya,</p>
             
-            <div id="signature-wrapper" class="relative h-20 w-40 flex items-center justify-center my-2">
+            <!-- Area Tanda Tangan Sedikit Diperkecil -->
+            <div id="signature-wrapper" class="relative h-16 w-36 flex items-center justify-center my-1">
                 <img id="signature-img" class="max-h-full max-w-full hidden object-contain" />
                 
-                <label id="btn-upload-sig" class="hidden no-print cursor-pointer bg-slate-200 text-slate-700 hover:bg-slate-300 text-xs px-3 py-2 rounded shadow-sm border border-slate-300 transition absolute">
-                    <i class="fa-solid fa-upload mr-1"></i> Upload TTD
+                <label id="btn-upload-sig" class="hidden no-print cursor-pointer bg-slate-200 text-slate-700 hover:bg-slate-300 text-[10px] px-2 py-1 rounded shadow-sm border border-slate-300 transition absolute">
+                    <i class="fa-solid fa-upload mr-1"></i> Upload
                     <input type="file" accept="image/*" class="hidden" onchange="handleSignatureUpload(event)">
                 </label>
             </div>
