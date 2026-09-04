@@ -2,6 +2,10 @@ let cvData = {};
 let currentProfile = 'teleperformance';
 let isEditMode = false;
 
+// Variabel global tambahan untuk surat
+let suratData = {};
+let activeTab = 'cv'; // 'cv' atau 'surat'
+
 // ================= =========================================
 // KONTROL LOGIN & KEAMANAN (HASH)
 // ==========================================================
@@ -293,6 +297,159 @@ function downloadJSON() {
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute("href", dataStr);
     downloadAnchor.setAttribute("download", "data.json");
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+}
+
+// Modifikasi fungsi init atau pemanggilan data awal
+async function loadAllData() {
+    try {
+        // Ambil data CV yang sudah ada
+        const resCv = await fetch('data.json');
+        cvData = await resCv.json();
+
+        // Ambil data Surat Lamaran
+        const resSurat = await fetch('surat.json');
+        suratData = await resSurat.json();
+
+        renderProfileTabs();
+        renderCV();
+        renderSurat();
+    } catch (err) {
+        console.error("Gagal memuat data:", err);
+    }
+}
+
+// Fungsi Navigasi Tab
+function switchTab(tab) {
+    activeTab = tab;
+    const cvSection = document.getElementById('cv-container') || document.querySelector('.max-w-4xl'); // sesuaikan ID container CV Anda
+    const suratSection = document.getElementById('section-surat');
+    const btnCv = document.getElementById('btn-tab-cv');
+    const btnSurat = document.getElementById('btn-tab-surat');
+
+    // Sembunyikan/tampilkan profil switcher khusus jika di tab surat
+    const profileHeader = document.querySelector('.profile-tabs-container'); // jika ada
+
+    if (tab === 'cv') {
+        document.getElementById('section-cv').classList.remove('hidden');
+        suratSection.classList.add('hidden');
+        btnCv.className = "px-5 py-2 rounded-lg font-medium bg-blue-600 text-white shadow transition";
+        btnSurat.className = "px-5 py-2 rounded-lg font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition";
+    } else {
+        document.getElementById('section-cv').classList.add('hidden');
+        suratSection.classList.remove('hidden');
+        btnSurat.className = "px-5 py-2 rounded-lg font-medium bg-blue-600 text-white shadow transition";
+        btnCv.className = "px-5 py-2 rounded-lg font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition";
+    }
+}
+
+// Render Surat Lamaran
+function renderSurat() {
+    const container = document.getElementById('section-surat');
+    if (!suratData) return;
+
+    let attachmentsHtml = suratData.attachments.map((item, idx) => `<li>${idx + 1}. ${item}</li>`).join('');
+    let personalInfoHtml = suratData.personalInfo.map(info => `
+        <tr>
+            <td class="py-1 pr-4 font-medium">${info.label}</td>
+            <td class="py-1 pr-2">:</td>
+            <td class="py-1" contenteditable="${isEditMode}">${info.value}</td>
+        </tr>
+    `).join('');
+
+    let bodyHtml = suratData.bodyParagraphs.map(p => `<p class="mb-4 text-justify" contenteditable="${isEditMode}">${p}</p>`).join('');
+
+    container.innerHTML = `
+        <div class="flex justify-between items-start mb-6 text-sm">
+            <div>
+                <span contenteditable="${isEditMode}" data-field="lampiran">Lampiran: ${suratData.lampiran}</span><br>
+                <span contenteditable="${isEditMode}" data-field="perihal">Perihal: ${suratData.perihal}</span>
+            </div>
+            <div class="text-right">
+                <span contenteditable="${isEditMode}" data-field="city">${suratData.city}</span>, <span contenteditable="${isEditMode}" data-field="date">${suratData.date}</span>
+            </div>
+        </div>
+
+        <div class="mb-6 text-sm">
+            <p contenteditable="${isEditMode}" data-field="tujuanKepada">${suratData.tujuanKepada}</p>
+            <p class="font-semibold" contenteditable="${isEditMode}" data-field="tujuanNama">${suratData.tujuanNama}</p>
+            <p contenteditable="${isEditMode}" data-field="tujuanAlamat">${suratData.tujuanAlamat}</p>
+        </div>
+
+        <div class="mb-4 text-sm">
+            <p class="mb-3" contenteditable="${isEditMode}" data-field="salamPembuka">${suratData.salamPembuka}</p>
+            <p class="mb-4 text-justify" contenteditable="${isEditMode}" data-field="paragrafPembuka">${suratData.paragrafPembuka}</p>
+            <p class="mb-2" contenteditable="${isEditMode}" data-field="labelDataDiri">${suratData.labelDataDiri}</p>
+            <table class="ml-4 mb-4 text-sm">
+                ${personalInfoHtml}
+            </table>
+        </div>
+
+        <div class="text-sm">
+            ${bodyHtml}
+            <p class="mb-3 text-justify" contenteditable="${isEditMode}" data-field="lampiranHeader">${suratData.lampiranHeader}</p>
+            <ol class="list-none pl-0 mb-4 space-y-1">
+                ${attachmentsHtml}
+            </ol>
+            <p class="mb-6 text-justify" contenteditable="${isEditMode}" data-field="paragrafPenutup">${suratData.paragrafPenutup}</p>
+        </div>
+
+        <div class="mt-8 flex justify-end">
+            <div class="text-center w-64">
+                <p class="mb-1" contenteditable="${isEditMode}" data-field="salamPenutup">${suratData.salamPenutup}</p>
+                <div class="relative inline-block my-2 cursor-pointer group" onclick="triggerSignUpload()">
+                    <img id="signature-preview" src="${suratData.signatureImage}" alt="Tanda Tangan" class="h-20 mx-auto object-contain transition group-hover:opacity-80" title="Klik untuk ganti tanda tangan">
+                    ${isEditMode ? '<span class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white text-xs opacity-0 group-hover:opacity-100 rounded">Ganti Tanda Tangan</span>' : ''}
+                </div>
+                <input type="file" id="sign-file-input" accept="image/*" class="hidden" onchange="handleSignUpload(event)">
+                <p class="font-bold underline mt-1" contenteditable="${isEditMode}" data-field="signatureName">${suratData.signatureName}</p>
+            </div>
+        </div>
+    `;
+}
+
+// Fungsi untuk memicu upload tanda tangan dari galeri
+function triggerSignUpload() {
+    if (!isEditMode) return;
+    document.getElementById('sign-file-input').click();
+}
+
+// Handle file gambar tanda tangan yang dipilih
+function handleSignUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            suratData.signatureImage = e.target.result;
+            document.getElementById('signature-preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Tombol Cetak PDF
+function handleCetakPDF() {
+    window.print();
+}
+
+// Tombol Simpan JSON (Bisa mengunduh data sesuai tab aktif atau digabung)
+function handleSimpanJSON() {
+    if (activeTab === 'surat') {
+        // Ambil pembaruan dari DOM jika mode edit aktif
+        // ... (sinkronisasi data surat)
+        downloadJSON(suratData, 'surat.json');
+    } else {
+        downloadJSON(cvData, 'data.json');
+    }
+}
+
+function downloadJSON(data, filename) {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", filename);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
